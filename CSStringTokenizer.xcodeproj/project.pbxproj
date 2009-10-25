@@ -10,7 +10,7 @@
 		97153A901094480600C9B5A7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97153A8F1094480600C9B5A7 /* CoreFoundation.framework */; };
 		97153A98109449C300C9B5A7 /* CSStringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 97153A96109449C300C9B5A7 /* CSStringTokenizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		97153A99109449C300C9B5A7 /* CSStringTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153A97109449C300C9B5A7 /* CSStringTokenizer.m */; };
-		97153AF01094730700C9B5A7 /* CSStringToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 97153AEE1094730700C9B5A7 /* CSStringToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97153AF01094730700C9B5A7 /* CSStringToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 97153AEE1094730700C9B5A7 /* CSStringToken.h */; settings = {ATTRIBUTES = (); }; };
 		97153AF11094730700C9B5A7 /* CSStringToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153AEF1094730700C9B5A7 /* CSStringToken.m */; };
 		97153BDF1094A0C400C9B5A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97153BDE1094A0C400C9B5A7 /* UIKit.framework */; };
 		97153BE31094A0D100C9B5A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97153BE21094A0D100C9B5A7 /* CoreGraphics.framework */; };
@@ -20,7 +20,9 @@
 		97153CE91094A29100C9B5A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153CE81094A29100C9B5A7 /* main.m */; };
 		97153CEE1094A29F00C9B5A7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97153CEB1094A29F00C9B5A7 /* RootViewController.xib */; };
 		97153CEF1094A29F00C9B5A7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97153CEC1094A29F00C9B5A7 /* MainWindow.xib */; };
-		97153CF01094A29F00C9B5A7 /* TokenizerDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97153CED1094A29F00C9B5A7 /* TokenizerDemo-Info.plist */; };
+		97153D7B1094B8CB00C9B5A7 /* libCSStringTokenizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libCSStringTokenizer.a */; };
+		97153DD41094C47600C9B5A7 /* SubTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153DD21094C47600C9B5A7 /* SubTokenViewController.m */; };
+		97153DD51094C47600C9B5A7 /* SubTokenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97153DD31094C47600C9B5A7 /* SubTokenViewController.xib */; };
 		AA747D9F0F9514B9006C5449 /* CSStringTokenizer_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* CSStringTokenizer_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,9 @@
 		97153CEB1094A29F00C9B5A7 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		97153CEC1094A29F00C9B5A7 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		97153CED1094A29F00C9B5A7 /* TokenizerDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TokenizerDemo-Info.plist"; sourceTree = "<group>"; };
+		97153DD11094C47600C9B5A7 /* SubTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTokenViewController.h; sourceTree = "<group>"; };
+		97153DD21094C47600C9B5A7 /* SubTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubTokenViewController.m; sourceTree = "<group>"; };
+		97153DD31094C47600C9B5A7 /* SubTokenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubTokenViewController.xib; path = Classes/SubTokenViewController.xib; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* CSStringTokenizer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStringTokenizer_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libCSStringTokenizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCSStringTokenizer.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +72,7 @@
 				97153BDF1094A0C400C9B5A7 /* UIKit.framework in Frameworks */,
 				97153BE31094A0D100C9B5A7 /* CoreGraphics.framework in Frameworks */,
 				97153BE71094A0DB00C9B5A7 /* Foundation.framework in Frameworks */,
+				97153D7B1094B8CB00C9B5A7 /* libCSStringTokenizer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +155,8 @@
 				97153CE11094A27600C9B5A7 /* RootViewController.m */,
 				97153CE21094A27600C9B5A7 /* TokenizerDemoAppDelegate.h */,
 				97153CE31094A27600C9B5A7 /* TokenizerDemoAppDelegate.m */,
+				97153DD11094C47600C9B5A7 /* SubTokenViewController.h */,
+				97153DD21094C47600C9B5A7 /* SubTokenViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -166,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				97153CEB1094A29F00C9B5A7 /* RootViewController.xib */,
+				97153DD31094C47600C9B5A7 /* SubTokenViewController.xib */,
 				97153CEC1094A29F00C9B5A7 /* MainWindow.xib */,
 				97153CED1094A29F00C9B5A7 /* TokenizerDemo-Info.plist */,
 			);
@@ -259,7 +268,7 @@
 			files = (
 				97153CEE1094A29F00C9B5A7 /* RootViewController.xib in Resources */,
 				97153CEF1094A29F00C9B5A7 /* MainWindow.xib in Resources */,
-				97153CF01094A29F00C9B5A7 /* TokenizerDemo-Info.plist in Resources */,
+				97153DD51094C47600C9B5A7 /* SubTokenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +282,7 @@
 				97153CE41094A27600C9B5A7 /* RootViewController.m in Sources */,
 				97153CE51094A27600C9B5A7 /* TokenizerDemoAppDelegate.m in Sources */,
 				97153CE91094A29100C9B5A7 /* main.m in Sources */,
+				97153DD41094C47600C9B5A7 /* SubTokenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +408,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "TokenizerDemo-Info.plist";
+				INFOPLIST_FILE = "Demo/TokenizerDemo-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -408,7 +418,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = TokenizerDemo;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -419,7 +429,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "TokenizerDemo-Info.plist";
+				INFOPLIST_FILE = "Demo/TokenizerDemo-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -443,7 +453,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "TokenizerDemo-Info.plist";
+				INFOPLIST_FILE = "Demo/TokenizerDemo-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -453,7 +463,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = TokenizerDemo;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.0;
 				ZERO_LINK = NO;
 			};
 			name = Release;

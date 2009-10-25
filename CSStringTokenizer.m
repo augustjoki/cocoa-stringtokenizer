@@ -69,11 +69,12 @@
     self.options = options;
     self.locale = locale;
     [self createTokenizer];
+    self.tokenType = CSStringTokenTypeRangeAndString;
     
     [self addObserver:self forKeyPath:@"string" options:NSKeyValueObservingOptionNew context:NULL];
     [self addObserver:self forKeyPath:@"range" options:NSKeyValueObservingOptionNew context:NULL];
     [self addObserver:self forKeyPath:@"options" options:NSKeyValueObservingOptionNew context:NULL];
-    [self addObserver:self forKeyPath:@"local" options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self forKeyPath:@"locale" options:NSKeyValueObservingOptionNew context:NULL];
   }
   return self;
 }
@@ -160,6 +161,10 @@
 
 
 - (void)dealloc {
+  [self removeObserver:self forKeyPath:@"string"];
+  [self removeObserver:self forKeyPath:@"range"];
+  [self removeObserver:self forKeyPath:@"options"];
+  [self removeObserver:self forKeyPath:@"locale"];
   self.string = nil;
   self.locale = nil;
   [super dealloc];

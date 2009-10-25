@@ -13,7 +13,7 @@ typedef CFOptionFlags CSStringTokenizerOptions;
 
 @interface CSStringTokenizer : NSObject {
   CFStringTokenizerRef tokenizer;
-#ifdef TARGET_IPHONE_SIMULATOR || (!__LP64__ && !TARGET_OS_IPHONE)
+#if defined(TARGET_IPHONE_SIMULATOR) || (!defined(__LP64__) && !defined(TARGET_OS_IPHONE))
   NSString *_string;
   NSRange _range;
   CSStringTokenizerOptions _options;

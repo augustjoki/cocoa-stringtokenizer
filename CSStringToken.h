@@ -7,15 +7,17 @@
 //
 
 enum {
+  CSStringTokenTypeNone,
   CSStringTokenTypeString,
-  CSStringTokenTypeRange
+  CSStringTokenTypeRange,
+  CSStringTokenTypeRangeAndString
 };
 
 typedef NSUInteger CSStringTokenType;
 
 
 @interface CSStringToken : NSObject {
-#ifdef TARGET_IPHONE_SIMULATOR || (!__LP64__ && !TARGET_OS_IPHONE)
+#if defined(TARGET_IPHONE_SIMULATOR) || (!defined(__LP64__) && !defined(TARGET_OS_IPHONE))
   CSStringTokenType _type;
   NSString *_string;
   NSRange _range;
@@ -41,7 +43,9 @@ typedef NSUInteger CSStringTokenType;
 @property(readonly) BOOL isCJWord;
 
 - (id)initFromTokenizer:(CFStringTokenizerRef)tokenizer withString:(NSString *)string withMask:(CFStringTokenizerTokenType)mask withType:(CSStringTokenType)type fetchSubTokens:(BOOL)fetchSubTokens;
+- (id)initWithString:(NSString *)string andRange:(NSRange)range;
 
 + (id)tokenFromTokenizer:(CFStringTokenizerRef)tokenizer withString:(NSString *)string withMask:(CFStringTokenizerTokenType)mask withType:(CSStringTokenType)type fetchSubTokens:(BOOL)fetchSubTokens;
++ (id)tokenWithString:(NSString *)string andRange:(NSRange)range;
 
 @end

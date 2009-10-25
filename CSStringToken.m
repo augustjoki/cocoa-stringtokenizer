@@ -31,6 +31,36 @@
 #pragma mark Initializers
 
 
+- (id)initWithString:(NSString *)string andRange:(NSRange)range {
+  if (self = [super init]) {
+    BOOL isString = NO;
+    BOOL isRange = NO;
+    if (string != nil) {
+      isString = YES;
+      self.string = string;
+    }
+    if (range.location != kCFNotFound) {
+      isRange = YES;
+      self.range = range;
+    }
+    
+    if (isRange && isString) {
+      self.type = CSStringTokenTypeRangeAndString;
+    }
+    else if (isRange) {
+      self.type = CSStringTokenTypeRange;
+    }
+    else if (isString) {
+      self.type = CSStringTokenTypeString;
+    }
+    else {
+      self.type = CSStringTokenTypeNone;
+    }
+  }
+  return self;
+}
+
+
 - (id)initFromTokenizer:(CFStringTokenizerRef)tokenizer withString:(NSString *)string withMask:(CFStringTokenizerTokenType)mask withType:(CSStringTokenType)type fetchSubTokens:(BOOL)fetchSubTokens {
   if (self = [super init]) {
     if (mask == kCFStringTokenizerTokenNone) {
@@ -51,15 +81,19 @@
       self.hasSubTokens = YES;
     }
     
+    
+    self.type = type;
+    BOOL isRange = (type == CSStringTokenTypeRange || type == CSStringTokenTypeRangeAndString);
+    BOOL isString = (type == CSStringTokenTypeString || type == CSStringTokenTypeRangeAndString);
+    
     CFRange cfRange = CFStringTokenizerGetCurrentTokenRange(tokenizer);
     NSRange range = NSMakeRange(cfRange.location, cfRange.length);
-    if (type == CSStringTokenTypeRange) {
+    if (isRange) {
       self.range = range;
     }
-    else if (type == CSStringTokenTypeString) {
+    if (isString) {
       self.string = [string substringWithRange:range];
     }
-    self.type = type;
     
     CFTypeRef attr = CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, kCFStringTokenizerAttributeLatinTranscription);
     if (attr != NULL) {
@@ -73,39 +107,51 @@
     }
     
     if (self.hasSubTokens && fetchSubTokens) {
-      CFRange *ranges;
+      CFRange *ranges = NULL;
       CFIndex maxRangeLength = 0;
-      CFMutableArrayRef strings;
-      if (type == CSStringTokenTypeRange) {
+      NSMutableArray *strings = nil;
+      if (isRange) {
         maxRangeLength = string.length;
-        strings = NULL;
+        ranges = malloc(sizeof(CFRange)*maxRangeLength);
       }
-      else if (type == CSStringTokenTypeString) {
-        ranges = NULL;
-        strings = CFArrayCreateMutable(kCFAllocatorDefault, 0, NULL);
+      if (isString) {
+        strings = [[NSMutableArray alloc] init];
       }
       
-      CFIndex numRanges = CFStringTokenizerGetCurrentSubTokens(tokenizer, ranges, maxRangeLength, strings);
+      CFIndex numRanges = CFStringTokenizerGetCurrentSubTokens(tokenizer, ranges, maxRangeLength, (CFMutableArrayRef)strings);
       
-      if (type == CSStringTokenTypeRange && numRanges > 0) {
-        NSMutableArray *subTokens = [[NSMutableArray alloc] init];
-        for (int ii = 0; ii < numRanges; ii++) {
-          CFRange range = ranges[ii];
-          NSValue *value = [NSValue valueWithRange:NSMakeRange(range.location, range.length)];
-          [subTokens addObject:value];
+      CFIndex count;
+      if (isRange) {
+        count = numRanges;
+      }
+      else if (isString) {
+        count = strings.count;
+      }
+      
+      NSMutableArray *subTokens = [[NSMutableArray alloc] init];
+      for (int ii = 0; ii < count; ii++) {
+        NSRange range = NSMakeRange(kCFNotFound, 0);
+        NSString *str = nil;
+        if (isRange) {
+          CFRange cfRange = ranges[ii];
+          range = NSMakeRange(cfRange.location, cfRange.length);
         }
-        self.subTokens = [NSArray arrayWithArray:subTokens];
-        [subTokens release];
+        if (isString) {
+          id obj = [strings objectAtIndex:ii];
+          str = obj;
+        }
+        
+        CSStringToken *subToken = [CSStringToken tokenWithString:str andRange:range];
+        [subTokens addObject:subToken];
       }
-      else if (type == CSStringTokenTypeString) {
-        self.subTokens = [NSArray arrayWithArray:(NSMutableArray *)strings];
-      }
+      
+      self.subTokens = [NSArray arrayWithArray:subTokens];
       
       if (ranges != NULL) {
         free(ranges);
       }
-      if (strings != NULL) {
-        CFRelease(strings);
+      if (strings != nil) {
+        [strings release];
       }
     }
   }
@@ -115,6 +161,11 @@
 
 #pragma mark -
 #pragma mark Factories
+
+
++ (id)tokenWithString:(NSString *)string andRange:(NSRange)range {
+  return [[[self alloc] initWithString:string andRange:range] autorelease];
+}
 
 
 + (id)tokenFromTokenizer:(CFStringTokenizerRef)tokenizer withString:(NSString *)string withMask:(CFStringTokenizerTokenType)mask withType:(CSStringTokenType)type fetchSubTokens:(BOOL)fetchSubTokens {

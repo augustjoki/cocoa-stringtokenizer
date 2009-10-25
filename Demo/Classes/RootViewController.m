@@ -7,6 +7,14 @@
 //
 
 #import "RootViewController.h"
+#import "SubTokenViewController.h"
+#import "CSStringTokenizer.h"
+
+@interface RootViewController ()
+
+- (void)tokenize;
+
+@end
 
 
 @implementation RootViewController
@@ -49,12 +57,156 @@
 }
  */
 
+
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return tokens.count;;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  static NSString *CellIdentifier = @"Cell";
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+  }
+  
+	CSStringToken *token = [tokens objectAtIndex:indexPath.row];
+  NSString *string = token.string;
+  if (token.language != nil) {
+    string = [string stringByAppendingFormat:@", %@", token.language];
+  }
+  if (token.containsNumbers) {
+    string = [string stringByAppendingString:@", #"];
+  }
+  if (token.containsNonLetters) {
+    string = [string stringByAppendingString:@", @"];
+  }
+  
+  cell.textLabel.text = string;
+  cell.detailTextLabel.text = NSStringFromRange(token.range);
+  if (token.hasSubTokens) {
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  else {
+    cell.accessoryType = UITableViewCellAccessoryNone;
+  }
+  return cell;
+}
+
+
+// Override to support row selection in the table view.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  SubTokenViewController *vc = [[SubTokenViewController alloc] initWithNibName:nil bundle:nil];
+  CSStringToken *token = [tokens objectAtIndex:indexPath.row];
+  vc.tokens = token.subTokens;
+  if (token.string) {
+    vc.title = token.string;
+  }
+  else {
+    vc.title = NSStringFromRange(token.range);
+  }
+  [self.navigationController pushViewController:vc animated:YES];
+  [vc release];
+}
+
+
+#pragma mark -
+#pragma mark Search Bar Delegate
+
+
+/*
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+}
+
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+  
+}
+
+
+- (void)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+  
+}
+
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+  
+}
+
+
+- (void)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+  
+}
+
+
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
+  
+}
+
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+  
+}
+*/
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+  [self tokenize];
+}
+
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+  [self tokenize];
+}
+
+
+- (void)tokenize {
+  if (search.text.length == 0) {
+    return;
+  }
+  CFOptionFlags options;
+  switch (search.selectedScopeButtonIndex) {
+    case 0:
+      options = kCFStringTokenizerUnitWord | kCFStringTokenizerAttributeLatinTranscription;
+      break;
+    case 1:
+      options = kCFStringTokenizerUnitSentence | kCFStringTokenizerAttributeLanguage;
+      break;
+    case 2:
+      options = kCFStringTokenizerUnitWordBoundary;
+    default:
+      break;
+  }
+  CSStringTokenizer *tokenizer = [CSStringTokenizer tokenizerWithString:search.text options:options];
+  tokenizer.fetchesSubTokens = YES;
+  CSStringToken *token = [tokenizer tokenForCharacterAtIndex:0];
+  tokens = [[NSArray alloc] initWithObjects:token, nil];
+  
+  [table reloadData];  
+}
+
+
+#pragma mark -
+#pragma mark Memory Management
+
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+  [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
 }
+
 
 - (void)viewDidUnload {
 	// Release anything that can be recreated in viewDidLoad or on demand.
@@ -62,90 +214,9 @@
 }
 
 
-#pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-	// Configure the cell.
-
-    return cell;
-}
-
-
-
-/*
-// Override to support row selection in the table view.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    // Navigation logic may go here -- for example, create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController animated:YES];
-	// [anotherViewController release];
-}
-*/
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 - (void)dealloc {
-    [super dealloc];
+  [tokens release];
+  [super dealloc];
 }
 
 
