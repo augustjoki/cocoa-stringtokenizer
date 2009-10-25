@@ -106,8 +106,12 @@
 
 // Override to support row selection in the table view.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  SubTokenViewController *vc = [[SubTokenViewController alloc] initWithNibName:nil bundle:nil];
   CSStringToken *token = [tokens objectAtIndex:indexPath.row];
+  if (!token.hasSubTokens) {
+    return;
+  }
+  
+  SubTokenViewController *vc = [[SubTokenViewController alloc] initWithNibName:nil bundle:nil];
   vc.tokens = token.subTokens;
   if (token.string) {
     vc.title = token.string;
@@ -171,6 +175,7 @@
 
 
 - (void)tokenize {
+  [search resignFirstResponder];
   if (search.text.length == 0) {
     return;
   }
@@ -189,10 +194,9 @@
   }
   CSStringTokenizer *tokenizer = [CSStringTokenizer tokenizerWithString:search.text options:options];
   tokenizer.fetchesSubTokens = YES;
-  CSStringToken *token = [tokenizer tokenForCharacterAtIndex:0];
-  tokens = [[NSArray alloc] initWithObjects:token, nil];
+  tokens = [tokenizer.tokens retain];
   
-  [table reloadData];  
+  [table reloadData];
 }
 
 

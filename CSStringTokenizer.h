@@ -59,4 +59,7 @@ typedef CFOptionFlags CSStringTokenizerOptions;
 
 - (CSStringToken *)tokenForCharacterAtIndex:(NSUInteger)index;
 
+- (CSStringToken *)nextToken;
+- (NSArray *)tokens;
+
 @end

@@ -207,6 +207,31 @@
 }
 
 
+- (CSStringToken *)nextToken {
+  CFStringTokenizerTokenType mask = CFStringTokenizerAdvanceToNextToken(tokenizer);
+  return [CSStringToken tokenFromTokenizer:tokenizer withString:self.string withMask:mask withType:self.tokenType fetchSubTokens:self.fetchesSubTokens];
+}
+
+
+- (NSArray *)tokens {
+  NSMutableArray *array = [[NSMutableArray alloc] init];
+  NSString *string = self.string;
+  CSStringTokenType type = self.tokenType;
+  BOOL fetch = self.fetchesSubTokens;
+  CFStringTokenizerTokenType mask = CFStringTokenizerGoToTokenAtIndex(tokenizer, 0);
+  while (mask != kCFStringTokenizerTokenNone) {
+    CSStringToken *token = [[CSStringToken alloc] initFromTokenizer:tokenizer withString:string withMask:mask withType:type fetchSubTokens:fetch];
+    [array addObject:token];
+    [token release];
+    
+    mask = CFStringTokenizerAdvanceToNextToken(tokenizer);
+  }
+  NSArray *tokens = [NSArray arrayWithArray:array];
+  [array release];
+  return tokens;
+}
+
+
 #pragma mark -
 #pragma mark Private
 
