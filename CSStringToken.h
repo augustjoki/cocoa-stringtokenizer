@@ -6,26 +6,42 @@
 //  Copyright 2009 Concinnous Software. All rights reserved.
 //
 
+enum {
+  CSStringTokenTypeString,
+  CSStringTokenTypeRange
+};
+
+typedef NSUInteger CSStringTokenType;
+
+
 @interface CSStringToken : NSObject {
-  NSString *string;
-  NSRange range;
-  NSString *latinTranslation;
-  NSString *language;
-  BOOL hasSubTokens;
-  NSArray *subTokens;
-  BOOL containsNumbers;
-  BOOL containsNonLetters;
-  BOOL isCJWord;
+#ifdef TARGET_IPHONE_SIMULATOR || (!__LP64__ && !TARGET_OS_IPHONE)
+  CSStringTokenType _type;
+  NSString *_string;
+  NSRange _range;
+  NSString *_latinTranscription;
+  NSString *_language;
+  BOOL _hasSubTokens;
+  NSArray *_subTokens;
+  BOOL _containsNumbers;
+  BOOL _containsNonLetters;
+  BOOL _isCJWord;
+#endif
 }
 
-@property(readonly) NSString *string;
+@property(readonly) CSStringTokenType type;
+@property(readonly, copy) NSString *string;
 @property(readonly) NSRange range;
-@property(readonly) NSString *latinTranslation;
-@property(readonly) NSString *language;
+@property(readonly, copy) NSString *latinTranscription;
+@property(readonly, copy) NSString *language;
 @property(readonly) BOOL hasSubTokens;
-@property(readonly) NSArray *subTokens;
+@property(readonly, retain) NSArray *subTokens;
 @property(readonly) BOOL containsNumbers;
 @property(readonly) BOOL containsNonLetters;
 @property(readonly) BOOL isCJWord;
+
+- (id)initFromTokenizer:(CFStringTokenizerRef)tokenizer withString:(NSString *)string withMask:(CFStringTokenizerTokenType)mask withType:(CSStringTokenType)type fetchSubTokens:(BOOL)fetchSubTokens;
+
++ (id)tokenFromTokenizer:(CFStringTokenizerRef)tokenizer withString:(NSString *)string withMask:(CFStringTokenizerTokenType)mask withType:(CSStringTokenType)type fetchSubTokens:(BOOL)fetchSubTokens;
 
 @end

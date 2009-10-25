@@ -132,22 +132,37 @@
 #pragma mark Properties
 
 
+#ifdef TARGET_IPHONE_SIMULATOR
 @synthesize string = _string;
 @synthesize range = _range;
 @synthesize options = _options;
 @synthesize locale = _locale;
 @synthesize fetchesSubTokens = _fetchesSubTokens;
 @synthesize tokenType = _tokenType;
+#else
+@synthesize string, range, options, locale, fetchesSubTokens, tokenType;
+#endif
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if ([keyPath isEqualToString:@"string"] || [keyPath isEqualToString:@"range"]) {
-    CFStringTokenizerSetString(_tokenizer, (CFStringRef)_string, CFRangeMake(_range.location, _range.length));
+    CFStringTokenizerSetString(tokenizer, (CFStringRef)self.string, CFRangeMake(self.range.location, self.range.length));
   }
   else if ([keyPath isEqualToString:@"options"] || [keyPath isEqualToString:@"locale"]) {
-    CFRelease(_tokenizer);
+    CFRelease(tokenizer);
     [self createTokenizer];
   }
+}
+
+
+#pragma mark -
+#pragma mark Memory Management
+
+
+- (void)dealloc {
+  self.string = nil;
+  self.locale = nil;
+  [super dealloc];
 }
 
 
@@ -166,7 +181,7 @@
 
 
 + (NSString *)bestStringLanguage:(NSString *)string range:(NSRange)range {
-  return (NSString *)CFStringTokenizerCopyBestStringLanguage((CFStringRef)string, CFRangeMake(range.location, range.length));
+  return [(NSString *)CFStringTokenizerCopyBestStringLanguage((CFStringRef)string, CFRangeMake(range.location, range.length)) autorelease];
 }
 
 
@@ -182,7 +197,8 @@
 
 
 - (CSStringToken *)tokenForCharacterAtIndex:(NSUInteger)index {
-  
+  CFStringTokenizerTokenType mask = CFStringTokenizerGoToTokenAtIndex(tokenizer, index);
+  return [CSStringToken tokenFromTokenizer:tokenizer withString:self.string withMask:mask withType:self.tokenType fetchSubTokens:self.fetchesSubTokens];
 }
 
 
@@ -191,8 +207,8 @@
 
 
 - (void)createTokenizer {
-  CFRange rng = CFRangeMake(_range.location, _range.length);
-  _tokenizer = CFStringTokenizerCreate(kCFAllocatorDefault, (CFStringRef)_string, rng, _options, (CFLocaleRef)_locale);
+  CFRange rng = CFRangeMake(self.range.location, self.range.length);
+  tokenizer = CFStringTokenizerCreate(kCFAllocatorDefault, (CFStringRef)self.string, rng, self.options, (CFLocaleRef)self.locale);
 }
 
 

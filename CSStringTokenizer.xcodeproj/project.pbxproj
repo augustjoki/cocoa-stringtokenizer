@@ -8,13 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		97153A901094480600C9B5A7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97153A8F1094480600C9B5A7 /* CoreFoundation.framework */; };
-		97153A98109449C300C9B5A7 /* CSStringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 97153A96109449C300C9B5A7 /* CSStringTokenizer.h */; };
+		97153A98109449C300C9B5A7 /* CSStringTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 97153A96109449C300C9B5A7 /* CSStringTokenizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		97153A99109449C300C9B5A7 /* CSStringTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153A97109449C300C9B5A7 /* CSStringTokenizer.m */; };
-		97153AF01094730700C9B5A7 /* CSStringToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 97153AEE1094730700C9B5A7 /* CSStringToken.h */; };
+		97153AF01094730700C9B5A7 /* CSStringToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 97153AEE1094730700C9B5A7 /* CSStringToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		97153AF11094730700C9B5A7 /* CSStringToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153AEF1094730700C9B5A7 /* CSStringToken.m */; };
+		97153BDF1094A0C400C9B5A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97153BDE1094A0C400C9B5A7 /* UIKit.framework */; };
+		97153BE31094A0D100C9B5A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97153BE21094A0D100C9B5A7 /* CoreGraphics.framework */; };
+		97153BE71094A0DB00C9B5A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97153BE61094A0DB00C9B5A7 /* Foundation.framework */; };
+		97153CE41094A27600C9B5A7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153CE11094A27600C9B5A7 /* RootViewController.m */; };
+		97153CE51094A27600C9B5A7 /* TokenizerDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153CE31094A27600C9B5A7 /* TokenizerDemoAppDelegate.m */; };
+		97153CE91094A29100C9B5A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97153CE81094A29100C9B5A7 /* main.m */; };
+		97153CEE1094A29F00C9B5A7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97153CEB1094A29F00C9B5A7 /* RootViewController.xib */; };
+		97153CEF1094A29F00C9B5A7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97153CEC1094A29F00C9B5A7 /* MainWindow.xib */; };
+		97153CF01094A29F00C9B5A7 /* TokenizerDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97153CED1094A29F00C9B5A7 /* TokenizerDemo-Info.plist */; };
 		AA747D9F0F9514B9006C5449 /* CSStringTokenizer_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* CSStringTokenizer_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		97153BDC1094A0B300C9B5A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D /* CSStringTokenizer */;
+			remoteInfo = CSStringTokenizer;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		97153A8F1094480600C9B5A7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -22,12 +41,35 @@
 		97153A97109449C300C9B5A7 /* CSStringTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStringTokenizer.m; sourceTree = "<group>"; };
 		97153AEE1094730700C9B5A7 /* CSStringToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStringToken.h; sourceTree = "<group>"; };
 		97153AEF1094730700C9B5A7 /* CSStringToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStringToken.m; sourceTree = "<group>"; };
+		97153BCE1094A01C00C9B5A7 /* TokenizerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TokenizerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97153BDE1094A0C400C9B5A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		97153BE21094A0D100C9B5A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		97153BE61094A0DB00C9B5A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		97153CE01094A27600C9B5A7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		97153CE11094A27600C9B5A7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		97153CE21094A27600C9B5A7 /* TokenizerDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenizerDemoAppDelegate.h; sourceTree = "<group>"; };
+		97153CE31094A27600C9B5A7 /* TokenizerDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenizerDemoAppDelegate.m; sourceTree = "<group>"; };
+		97153CE71094A29100C9B5A7 /* TokenizerDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenizerDemo_Prefix.pch; sourceTree = "<group>"; };
+		97153CE81094A29100C9B5A7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		97153CEB1094A29F00C9B5A7 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		97153CEC1094A29F00C9B5A7 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		97153CED1094A29F00C9B5A7 /* TokenizerDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TokenizerDemo-Info.plist"; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* CSStringTokenizer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStringTokenizer_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libCSStringTokenizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCSStringTokenizer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		97153BCC1094A01C00C9B5A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97153BDF1094A0C400C9B5A7 /* UIKit.framework in Frameworks */,
+				97153BE31094A0D100C9B5A7 /* CoreGraphics.framework in Frameworks */,
+				97153BE71094A0DB00C9B5A7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07C0554694100DB518D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -44,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC07E0554694100DB518D /* libCSStringTokenizer.a */,
+				97153BCE1094A01C00C9B5A7 /* TokenizerDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,6 +94,7 @@
 		0867D691FE84028FC02AAC07 /* CSStringTokenizer */ = {
 			isa = PBXGroup;
 			children = (
+				97153BD81094A08E00C9B5A7 /* Demo */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -87,6 +131,57 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		97153BD81094A08E00C9B5A7 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				97153CDF1094A27600C9B5A7 /* Classes */,
+				97153CE61094A29100C9B5A7 /* Other Sources */,
+				97153CEA1094A29F00C9B5A7 /* Resources */,
+				97153CF11094A2B200C9B5A7 /* Frameworks */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		97153CDF1094A27600C9B5A7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				97153CE01094A27600C9B5A7 /* RootViewController.h */,
+				97153CE11094A27600C9B5A7 /* RootViewController.m */,
+				97153CE21094A27600C9B5A7 /* TokenizerDemoAppDelegate.h */,
+				97153CE31094A27600C9B5A7 /* TokenizerDemoAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		97153CE61094A29100C9B5A7 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				97153CE71094A29100C9B5A7 /* TokenizerDemo_Prefix.pch */,
+				97153CE81094A29100C9B5A7 /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		97153CEA1094A29F00C9B5A7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97153CEB1094A29F00C9B5A7 /* RootViewController.xib */,
+				97153CEC1094A29F00C9B5A7 /* MainWindow.xib */,
+				97153CED1094A29F00C9B5A7 /* TokenizerDemo-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		97153CF11094A2B200C9B5A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97153BDE1094A0C400C9B5A7 /* UIKit.framework */,
+				97153BE21094A0D100C9B5A7 /* CoreGraphics.framework */,
+				97153BE61094A0DB00C9B5A7 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -103,6 +198,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		97153BCD1094A01C00C9B5A7 /* TokenizerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97153BD41094A01D00C9B5A7 /* Build configuration list for PBXNativeTarget "TokenizerDemo" */;
+			buildPhases = (
+				97153BCA1094A01C00C9B5A7 /* Resources */,
+				97153BCB1094A01C00C9B5A7 /* Sources */,
+				97153BCC1094A01C00C9B5A7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97153BDD1094A0B300C9B5A7 /* PBXTargetDependency */,
+			);
+			name = TokenizerDemo;
+			productName = TokenizerDemo;
+			productReference = 97153BCE1094A01C00C9B5A7 /* TokenizerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D2AAC07D0554694100DB518D /* CSStringTokenizer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "CSStringTokenizer" */;
@@ -134,11 +247,35 @@
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* CSStringTokenizer */,
+				97153BCD1094A01C00C9B5A7 /* TokenizerDemo */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		97153BCA1094A01C00C9B5A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97153CEE1094A29F00C9B5A7 /* RootViewController.xib in Resources */,
+				97153CEF1094A29F00C9B5A7 /* MainWindow.xib in Resources */,
+				97153CF01094A29F00C9B5A7 /* TokenizerDemo-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		97153BCB1094A01C00C9B5A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97153CE41094A27600C9B5A7 /* RootViewController.m in Sources */,
+				97153CE51094A27600C9B5A7 /* TokenizerDemoAppDelegate.m in Sources */,
+				97153CE91094A29100C9B5A7 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2AAC07B0554694100DB518D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -149,6 +286,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97153BDD1094A0B300C9B5A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC07D0554694100DB518D /* CSStringTokenizer */;
+			targetProxy = 97153BDC1094A0B300C9B5A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
@@ -193,7 +338,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -206,7 +351,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};
@@ -221,7 +366,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = "Debug LLVM";
 		};
@@ -243,6 +388,76 @@
 			};
 			name = "Debug LLVM";
 		};
+		97153BD11094A01D00C9B5A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "TokenizerDemo-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TokenizerDemo;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Debug;
+		};
+		97153BD21094A01D00C9B5A7 /* Debug LLVM */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "TokenizerDemo-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TokenizerDemo;
+				SDKROOT = iphoneos3.0;
+			};
+			name = "Debug LLVM";
+		};
+		97153BD31094A01D00C9B5A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "TokenizerDemo-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TokenizerDemo;
+				SDKROOT = iphoneos3.1.2;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -262,6 +477,16 @@
 				1DEB922308733DC00010E9CD /* Debug */,
 				97153AD510946BFE00C9B5A7 /* Debug LLVM */,
 				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97153BD41094A01D00C9B5A7 /* Build configuration list for PBXNativeTarget "TokenizerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97153BD11094A01D00C9B5A7 /* Debug */,
+				97153BD21094A01D00C9B5A7 /* Debug LLVM */,
+				97153BD31094A01D00C9B5A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

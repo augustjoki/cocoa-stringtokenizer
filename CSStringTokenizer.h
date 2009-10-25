@@ -6,25 +6,21 @@
 //  Copyright 2009 Concinnous Software. All rights reserved.
 //
 
+#import "CSStringToken.h"
+
 typedef CFOptionFlags CSStringTokenizerOptions;
 
-enum {
-  CSStringTokenizerTokenTypeString,
-  CSStringTokenizerTokenTypeRange
-};
-
-typedef NSUInteger CSStringTokenizerTokenType;
-
-@class CSStringToken;
 
 @interface CSStringTokenizer : NSObject {
-  CFStringTokenizerRef _tokenizer;
+  CFStringTokenizerRef tokenizer;
+#ifdef TARGET_IPHONE_SIMULATOR || (!__LP64__ && !TARGET_OS_IPHONE)
   NSString *_string;
   NSRange _range;
   CSStringTokenizerOptions _options;
   NSLocale *_locale;
   BOOL _fetchesSubTokens;
-  CSStringTokenizerTokenType _tokenType;
+  CSStringTokenType _tokenType;
+#endif
 }
 
 @property(copy) NSString *string;
@@ -32,7 +28,7 @@ typedef NSUInteger CSStringTokenizerTokenType;
 @property(assign) CSStringTokenizerOptions options;
 @property(retain) NSLocale *locale;
 @property(assign) BOOL fetchesSubTokens;
-@property(assign) CSStringTokenizerTokenType tokenType;
+@property(assign) CSStringTokenType tokenType;
 
 - (id)initWithString:(NSString *)string;
 - (id)initWithString:(NSString *)string range:(NSRange)range;
