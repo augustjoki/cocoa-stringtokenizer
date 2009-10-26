@@ -194,7 +194,13 @@
   }
   CSStringTokenizer *tokenizer = [CSStringTokenizer tokenizerWithString:search.text options:options];
   tokenizer.fetchesSubTokens = YES;
-  tokens = [tokenizer.tokens retain];
+  //tokens = [tokenizer.tokens retain];
+  NSMutableArray *array = [NSMutableArray array];
+  for (CSStringToken *token in tokenizer) {
+    NSLog(@"%@, %@", token.string, NSStringFromRange(token.range));
+    [array addObject:token];
+  }
+  tokens = [array retain];
   
   [table reloadData];
 }

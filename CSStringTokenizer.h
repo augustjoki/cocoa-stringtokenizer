@@ -11,7 +11,7 @@
 typedef CFOptionFlags CSStringTokenizerOptions;
 
 
-@interface CSStringTokenizer : NSObject {
+@interface CSStringTokenizer : NSObject <NSFastEnumeration> {
   CFStringTokenizerRef tokenizer;
 #if defined(TARGET_IPHONE_SIMULATOR) || (!defined(__LP64__) && !defined(TARGET_OS_IPHONE))
   NSString *_string;

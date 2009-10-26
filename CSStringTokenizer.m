@@ -233,6 +233,39 @@
 
 
 #pragma mark -
+#pragma mark Fast Enumeration
+
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len {
+  CFStringTokenizerTokenType mask;
+  if (state->state == 0) {
+    mask = CFStringTokenizerGoToTokenAtIndex(tokenizer, 0);
+  }
+  else {
+    mask = CFStringTokenizerAdvanceToNextToken(tokenizer);
+  }
+  
+  NSUInteger count = 0;
+  NSString *string = self.string;
+  CSStringTokenType type = self.tokenType;
+  BOOL fetch = self.fetchesSubTokens;
+  while (mask != kCFStringTokenizerTokenNone && count < len) {
+    CSStringToken *token = [CSStringToken tokenFromTokenizer:tokenizer withString:string withMask:mask withType:type fetchSubTokens:fetch];
+    stackbuf[count] = token;
+    
+    mask = CFStringTokenizerAdvanceToNextToken(tokenizer);
+    count++;
+  }
+  
+  state->state = count;
+  state->itemsPtr = stackbuf;
+  state->mutationsPtr = (unsigned long *)self;
+  
+  return count;
+}
+
+
+#pragma mark -
 #pragma mark Private
 
 
