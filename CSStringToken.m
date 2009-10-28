@@ -176,7 +176,7 @@
 #pragma mark -
 #pragma mark Properties
 
-#ifdef TARGET_IPHONE_SIMULATOR
+#if defined(TARGET_IPHONE_SIMULATOR) || (!defined(__LP64__) && !defined(TARGET_OS_IPHONE))
 @synthesize type = _type;
 @synthesize string = _string;
 @synthesize range = _range;
