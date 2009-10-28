@@ -53,9 +53,9 @@ typedef CFOptionFlags CSStringTokenizerOptions;
 + (NSString *)bestStringLanguage:(NSString *)string;
 + (NSString *)bestStringLanguage:(NSString *)string range:(NSRange)range;
 
-#ifndef TARGET_OS_IPHONE
+/* Doesn't actually seem to exist anywhere
 + (CSStringTokenizerOptions)supportedOptionsForLanguage:(NSString *)language;
-#endif
+*/
 
 - (CSStringToken *)tokenForCharacterAtIndex:(NSUInteger)index;
 

@@ -190,11 +190,11 @@
 }
 
 
-#ifndef TARGET_OS_IPHONE
+/* Doesn't actually seem to exist anywhere
 + (CSStringTokenizerOptions)supportedOptionsForLanguage:(NSString *)language {
   return CFStringTokenizerGetSupportedOptionsForLanguage((CFStringRef)language);
 }
-#endif
+*/
 
 
 #pragma mark -
